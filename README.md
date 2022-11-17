@@ -12,7 +12,6 @@ Package for this project
    import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
    import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
    import Geolocation from 'react-native-geolocation-service';
-   import { customStyleMap } from '../Styles/Map';
 ```
 # Use Google Map API And Current Location
 ## Config in android/app/src/main/AndroidManifest.xml file.
@@ -40,25 +39,6 @@ Package for this project
 ## create state
 ```js
 const [location, setLocation] = useState(null);
-```
-## Request gps permission 
-```js 
-    const handleLocationPermission = async () => {
-    let permissionCheck = '';
-
-    if (Platform.OS === 'android') {
-      permissionCheck = await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
-
-      if (permissionCheck === RESULTS.DENIED) {
-        const permissionRequest = await request(
-          PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-        );
-        permissionRequest === RESULTS.GRANTED
-          ? console.warn('Location permission granted.')
-          : console.warn('Location perrmission denied.');
-      }
-    }
-  };
 ```
 ## Request gps permission 
 ```js 
@@ -115,7 +95,6 @@ const [location, setLocation] = useState(null);
           }}
 
           showsUserLocation={true}
-          customMapStyle={customStyleMap}
           paddingAdjustmentBehavior="automatic"
           showsMyLocationButton={true}
           showsBuildings={true}
